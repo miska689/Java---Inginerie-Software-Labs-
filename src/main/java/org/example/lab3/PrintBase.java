@@ -10,7 +10,7 @@ public class PrintBase {
    * @param base the base in which the number will be printed
    */
   public static void printBase(int number, int base) {
-    if (base > 16 || base < 2) {
+    if (base < 2) {
       return;
     }
 
