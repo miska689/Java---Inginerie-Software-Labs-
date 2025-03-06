@@ -89,12 +89,17 @@ public class SortAlgorithm {
       array[i] = scanner.nextInt();
     }
 
+    Integer[] array2 = array.clone();
+
     System.out.println("Sorting using bubble sort:");
     SortAlgorithm.bubbleSort(array, (a, b) -> a > b);
+    for (int n : array) {
+      System.out.print(n + " ");
+    }
+    System.out.println();
 
     System.out.println("Sorting using quick sort:");
-    SortAlgorithm.quickSort(array, 0, array.length - 1, (a, b) -> a > b);
-
+    SortAlgorithm.quickSort(array2, 0, array.length - 1, (a, b) -> a > b);
     for (int n : array) {
       System.out.print(n + " ");
     }
