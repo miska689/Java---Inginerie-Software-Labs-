@@ -1,11 +1,20 @@
 package org.example.lab3;
 
+import java.util.Scanner;
+
 @FunctionalInterface
 interface SortOperation<T> {
   boolean compare(T a, T b);
 }
 
 public class SortAlgorithm {
+  /**
+   * Sorts the given array using the bubble sort algorithm.
+   *
+   * @param <T> the type of elements in the array
+   * @param array the array to be sorted
+   * @param sortOperation the comparison operation defining the sort order
+   */
   public static <T> void bubbleSort(T[] array, SortOperation<T> sortOperation) {
     int n = array.length;
     T temp;
@@ -21,6 +30,16 @@ public class SortAlgorithm {
     }
   }
 
+  /**
+   * Partitions the given array for the quicksort algorithm.
+   *
+   * @param <T> the type of elements in the array
+   * @param arr the array to be partitioned
+   * @param low the starting index of the partition
+   * @param high the ending index of the partition
+   * @param sortOperation the comparison operation defining the sort order
+   * @return the index of the pivot element after partition
+   */
   public static <T> int partition(T[] arr, int low, int high, SortOperation<T> sortOperation) {
     T pivot = arr[high];
 
@@ -42,6 +61,15 @@ public class SortAlgorithm {
     return i + 1;
   }
 
+  /**
+   * Sorts the given array using the quicksort algorithm.
+   *
+   * @param arr array to be sorted
+   * @param low index of the first element
+   * @param high index of the last element
+   * @param sortOperation comparison operation defining the sort order
+   * @param <T> type of elements in the array
+   */
   public static <T> void quickSort(T[] arr, int low, int high, SortOperation<T> sortOperation) {
     if (low < high) {
       int pivot = SortAlgorithm.partition(arr, low, high, sortOperation);
@@ -52,10 +80,20 @@ public class SortAlgorithm {
   }
 
   public static void main() {
-    Integer[] array = {3, 60, 35, 2, 45, 320, 5};
+    Scanner scanner = new Scanner(System.in);
 
-    //    SortAlgorithm.bubbleSort(array, (a, b) -> a > b);
-    SortAlgorithm.quickSort(array, 0, array.length - 1, (a, b) -> a <= b);
+    Integer[] array = new Integer[10];
+
+    for (int i = 0; i < 10; i++) {
+      System.out.println("Enter number " + i + ": ");
+      array[i] = scanner.nextInt();
+    }
+
+    System.out.println("Sorting using bubble sort:");
+    SortAlgorithm.bubbleSort(array, (a, b) -> a > b);
+
+    System.out.println("Sorting using quick sort:");
+    SortAlgorithm.quickSort(array, 0, array.length - 1, (a, b) -> a > b);
 
     for (int n : array) {
       System.out.print(n + " ");
