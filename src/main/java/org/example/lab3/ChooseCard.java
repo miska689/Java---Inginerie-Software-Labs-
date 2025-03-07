@@ -27,11 +27,11 @@ public class ChooseCard {
       return false;
     }
 
-    String numberOnly= card.replaceAll("[^0-9]", "");
+    String numberOnly = card.replaceAll("[^0-9]", "");
 
-    try{
+    try {
       int number = Integer.parseInt(numberOnly);
-      if ( number < 8) {
+      if (number < 8) {
         return false;
       }
     } catch (NumberFormatException e) {
@@ -48,6 +48,16 @@ public class ChooseCard {
       "KS", "KC", "AH", "AD", "AS", "AC",
     };
 
-    List<String> cardsList = Arrays.asList(cards);
+    List<String> cardsList = new ArrayList<>(Arrays.asList(cards));
+
+    int nChosenCards = 1;
+
+    while (!chooseCard(cardsList)) {
+      System.out.println("The game continues.");
+      nChosenCards++;
+    }
+
+    System.out.println("Computer has chosen the correct card. The game ends.");
+    System.out.println("Number of chosen cards: " + nChosenCards);
   }
 }
