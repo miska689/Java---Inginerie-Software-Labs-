@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Random;
 
 public class ChooseCard {
+  /**
+   * Choose a card from the list of cards. If the card is not valid, remove it from the list and
+   * continue choosing.
+   *
+   * @param cards List of cards
+   * @return true if the card is valid, false otherwise
+   */
   public static boolean chooseCard(List<String> cards) {
     Random random = new Random();
 
@@ -22,6 +29,12 @@ public class ChooseCard {
     return false;
   }
 
+  /**
+   * Check if the card is valid.
+   *
+   * @param card Card to check
+   * @return true if the card is valid, false otherwise
+   */
   public static boolean checkCard(String card) {
     if (card.charAt(card.length() - 1) != 'S') {
       return false;
