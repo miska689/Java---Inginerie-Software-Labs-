@@ -9,6 +9,7 @@ public class TicTacToe implements NativeKeyListener {
   private final int size;
   private final int[][] board;
   private int selectedSquare;
+  private int gameStatus;
   private ArrayList<Integer> availableSquare;
 
   private final int[][] magicSquare = {
@@ -26,6 +27,7 @@ public class TicTacToe implements NativeKeyListener {
     this.board = new int[size][size];
     this.availableSquare = new ArrayList<>();
     this.selectedSquare = 0;
+    this.gameStatus = 0;
 
     for (int i = 0; i < size * size; i++) {
       availableSquare.add(i);
@@ -188,6 +190,7 @@ public class TicTacToe implements NativeKeyListener {
           board[selectedSquare / size][selectedSquare % size] = 1;
           availableSquare.remove(Integer.valueOf(selectedSquare));
           computerMove();
+          gameStatus = checkWin();
         }
         break;
     }
@@ -203,15 +206,12 @@ public class TicTacToe implements NativeKeyListener {
       System.exit(1);
     }
 
-    int win;
-
     while (true) {
       System.out.println("\033[H\033[2J");
       printBoard();
-      win = checkWin();
 
-      if (win != 0) {
-        System.out.println("Player " + (win == 1 ? "X" : "O") + " wins!");
+      if (gameStatus != 0) {
+        System.out.println("Player " + (gameStatus == 1 ? "X" : "O") + " wins!");
         com.github.kwhat.jnativehook.GlobalScreen.removeNativeKeyListener(this);
         return;
       } else if (availableSquare.isEmpty()) {
