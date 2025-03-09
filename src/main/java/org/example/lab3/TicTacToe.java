@@ -18,6 +18,10 @@ public class TicTacToe implements NativeKeyListener {
   };
 
   public TicTacToe(int size) {
+    if (size < 3) {
+      throw new IllegalArgumentException("Size must be at least 3.");
+    }
+
     this.size = size;
     this.board = new int[size][size];
     this.availableSquare = new ArrayList<>();
@@ -29,8 +33,8 @@ public class TicTacToe implements NativeKeyListener {
   }
 
   /**
-   * Prints the current state of the TicTacToe board to the console.
-   * Highlights the currently selected square with an underline.
+   * Prints the current state of the TicTacToe board to the console. Highlights the currently
+   * selected square with an underline.
    */
   private void printBoard() {
     String underline;
@@ -62,7 +66,8 @@ public class TicTacToe implements NativeKeyListener {
    *
    * @param sx The x-coordinate of the top-left corner of the 3x3 square.
    * @param sy The y-coordinate of the top-left corner of the 3x3 square.
-   * @return A list of two lists, where the first list contains the scores of the X squares and the second list contains the scores of the O squares.
+   * @return A list of two lists, where the first list contains the scores of the X squares and the
+   *     second list contains the scores of the O squares.
    */
   private ArrayList<List<Integer>> getScore(int sx, int sy) {
     ArrayList<List<Integer>> scores = new ArrayList<>();
@@ -129,9 +134,7 @@ public class TicTacToe implements NativeKeyListener {
     return 0;
   }
 
-  /**
-   * Makes a move for the computer player.
-   */
+  /** Makes a move for the computer player. */
   private void computerMove() {
     if (availableSquare.isEmpty()) {
       return;
@@ -189,7 +192,6 @@ public class TicTacToe implements NativeKeyListener {
         break;
     }
   }
-
 
   public void runGame() throws InterruptedException {
     com.github.kwhat.jnativehook.GlobalScreen.addNativeKeyListener(this);
