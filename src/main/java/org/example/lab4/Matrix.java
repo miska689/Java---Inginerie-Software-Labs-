@@ -31,6 +31,12 @@ public class Matrix {
     matrix[row][column] = value;
   }
 
+  /**
+   * Returns an array of numbers that are close to the given number.
+   *
+   * @param number the number to compare
+   * @return an array of numbers that are close to the given number
+   */
   public int[] getAppropriateNumber(int number) {
     int[] result = new int[9];
     int index = 0;
@@ -47,6 +53,9 @@ public class Matrix {
     return result;
   }
 
+  /**
+   * Prints the matrix.
+   */
   public void print() {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
