@@ -2,6 +2,7 @@ package org.example.lab3;
 
 import java.util.*;
 
+import com.github.kwhat.jnativehook.NativeHookException;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
@@ -166,24 +167,32 @@ public class TicTacToe implements NativeKeyListener {
         if (selectedSquare < 0) {
           selectedSquare = size * size - 1;
         }
+        System.out.println("\033[H\033[2J");
+        printBoard();
         break;
       case NativeKeyEvent.VC_DOWN:
         selectedSquare += size;
         if (selectedSquare >= size * size) {
           selectedSquare = 0;
         }
+        System.out.println("\033[H\033[2J");
+        printBoard();
         break;
       case NativeKeyEvent.VC_LEFT:
         selectedSquare--;
         if (selectedSquare < 0) {
           selectedSquare = size * size - 1;
         }
+        System.out.println("\033[H\033[2J");
+        printBoard();
         break;
       case NativeKeyEvent.VC_RIGHT:
         selectedSquare++;
         if (selectedSquare >= size * size) {
           selectedSquare = 0;
         }
+        System.out.println("\033[H\033[2J");
+        printBoard();
         break;
       case NativeKeyEvent.VC_ENTER:
         if (board[selectedSquare / size][selectedSquare % size] == 0) {
@@ -192,7 +201,25 @@ public class TicTacToe implements NativeKeyListener {
           computerMove();
           gameStatus = checkWin();
         }
+        System.out.println("\033[H\033[2J");
+        printBoard();
         break;
+    }
+    if (gameStatus != 0) {
+      System.out.println("Player " + (gameStatus == 1 ? "X" : "O") + " wins!");
+      try {
+        com.github.kwhat.jnativehook.GlobalScreen.unregisterNativeHook();
+      } catch (NativeHookException ex) {
+        throw new RuntimeException(ex);
+      }
+    } else if (availableSquare.isEmpty()) {
+      System.out.println("It's a draw!");
+      try {
+        com.github.kwhat.jnativehook.GlobalScreen.unregisterNativeHook();
+
+      } catch (NativeHookException ex) {
+        throw new RuntimeException(ex);
+      }
     }
   }
 
@@ -206,21 +233,7 @@ public class TicTacToe implements NativeKeyListener {
       System.exit(1);
     }
 
-    while (true) {
-      System.out.println("\033[H\033[2J");
-      printBoard();
-
-      if (gameStatus != 0) {
-        System.out.println("Player " + (gameStatus == 1 ? "X" : "O") + " wins!");
-        com.github.kwhat.jnativehook.GlobalScreen.removeNativeKeyListener(this);
-        return;
-      } else if (availableSquare.isEmpty()) {
-        com.github.kwhat.jnativehook.GlobalScreen.removeNativeKeyListener(this);
-        System.out.println("It's a draw!");
-        return;
-      }
-
-      Thread.sleep(60);
-    }
+    System.out.println("\033[H\033[2J");
+    printBoard();
   }
 }
