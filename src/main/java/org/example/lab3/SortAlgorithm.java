@@ -1,11 +1,8 @@
 package org.example.lab3;
 
-import java.util.Scanner;
+import org.example.lab4.Student;
 
-@FunctionalInterface
-interface SortOperation<T> {
-  boolean compare(T a, T b);
-}
+import java.util.Scanner;
 
 public class SortAlgorithm {
   /**
