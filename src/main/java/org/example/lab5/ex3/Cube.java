@@ -1,4 +1,4 @@
-package org.example.lab5;
+package org.example.lab5.ex3;
 
 public class Cube extends SpatialFigure {
   private int side;

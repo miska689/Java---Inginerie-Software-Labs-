@@ -1,6 +1,4 @@
-package org.example.lab5;
-
-import org.example.Main;
+package org.example.lab5.ex1;
 
 @FunctionalInterface
 interface FIAdd {

@@ -1,6 +1,4 @@
-package org.example.lab5;
-
-import java.awt.*;
+package org.example.lab5.ex3;
 
 public class Cylinder extends SpatialFigure {
   private final int radius;

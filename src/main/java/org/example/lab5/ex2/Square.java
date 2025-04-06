@@ -1,4 +1,4 @@
-package org.example.lab5;
+package org.example.lab5.ex2;
 
 public class Square implements IGeometricForm {
   @Override

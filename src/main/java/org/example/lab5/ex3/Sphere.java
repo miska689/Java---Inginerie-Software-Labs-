@@ -1,4 +1,4 @@
-package org.example.lab5;
+package org.example.lab5.ex3;
 
 public class Sphere extends SpatialFigure {
   private int radius;
