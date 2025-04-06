@@ -1,7 +1,7 @@
 package org.example.lab5;
 
 public abstract class SpatialFigure {
-  private String name;
+  protected String name;
 
   public SpatialFigure(String name) {
     this.name = name;
